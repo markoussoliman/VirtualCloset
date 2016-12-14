@@ -1,0 +1,6 @@
+$build-main: #27B6BF;
+$build-secondary: #FDEFEC;
+
+.tab-button[aria-selected=true] {
+	color: $build-main !important;
+}

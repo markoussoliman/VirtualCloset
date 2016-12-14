@@ -11,12 +11,12 @@ import { NavController } from 'ionic-angular';
   selector: 'page-build-closet',
   templateUrl: 'build-closet.html'
 })
-export class BuildClosetPage {
+export class BuildCloset {
 
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
-    console.log('Hello BuildClosetPage Page');
+    //console.log('Hello BuildClosetPage Page');
   }
 
 }
