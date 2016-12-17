@@ -6,29 +6,44 @@
 -->
 <ion-content padding>
 	<ion-card class="buildClosetCard">
-  		<img class="image" src="../assets/img/t-shirt.png"/>
-	  	<ion-card-content>
-	    	<ion-card-title>
+		<ion-row class="titleRow">
+			<ion-card-title class="title">
 				How Many Shirts Do You Own?
 		   	</ion-card-title>
-	    	<p>
-				<ion-list>
-					<ion-item>
-				    	<ion-label>0</ion-label>
-				    	<ion-input type="text"></ion-input>
-					  </ion-item>
-
-				  	<ion-item>
-				    	<ion-label fixed>Color</ion-label>
-				    	<!-- Add color in circles -->
-				    	<!-- <ion-input type="password"></ion-input> -->
-				  	</ion-item>
-				</ion-list>
-				
-				<div padding>
-					<button block>Sign In</button>
-				</div>
-	  	</ion-card-content>
+		</ion-row>
+		<ion-row class="imageRow">
+			<img class="image" src="{{selectedShirtTypeImage}}" [style.background-color]="selectedColor" />
+		</ion-row>
+		<ion-row class="questionsRow">
+			<ion-col width-33>
+				<ion-item>
+			    	<ion-label stacked>Quantity</ion-label>
+			    	<ion-input type="text"></ion-input>
+				  </ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-item>
+					<ion-label stacked>Type</ion-label>
+					<ion-select [(ngModel)]="selectedShirtType">
+						<ion-option *ngFor="let item of shirtTypes" value="{{item.id}}">{{item.type}}</ion-option>
+					</ion-select>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row class="colorRow">
+			<ion-slides loop>
+				<ion-slide class="colors" 
+					*ngFor="let color of colors" 
+					[ngStyle]="{'background-color': color.hex}" 
+					(click)="selectColor(color)">
+				</ion-slide>
+			</ion-slides>
+		</ion-row>
 	</ion-card>
-
+	<div class="nextButtonDiv">
+		<button ion-button round outline icon-right class="nextButton" (click)="pantsQuestion()">
+			Next
+			<ion-icon name="ion-arrow-forward"></ion-icon>
+		</button>
+	</div>
 </ion-content>
