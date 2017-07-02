@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, PipeTransform, Pipe } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -7,7 +7,15 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {ClosetPage} from '../pages/closet/closet';
 import {BuildCloset} from '../pages/build-closet/build-closet';
+import {DomSanitizer} from '@angular/platform-browser';
 
+@Pipe({ name: 'safeHtml'})
+export class SafeHtmlPipe implements PipeTransform  {
+  constructor(private sanitized: DomSanitizer) {}
+  transform(value) {
+    return this.sanitized.bypassSecurityTrustHtml(value);
+  }
+}
 @NgModule({
   declarations: [
     MyApp,
@@ -16,7 +24,8 @@ import {BuildCloset} from '../pages/build-closet/build-closet';
     HomePage,
     TabsPage,
     ClosetPage,
-    BuildCloset
+    BuildCloset,
+    SafeHtmlPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)

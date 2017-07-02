@@ -18,7 +18,7 @@ $build-secondary: #FDEFEC;
 	}
 
 	.imageRow {
-		height: 55%;
+		height: 30%;
 
 		.image {
 			width: 60%;
@@ -46,6 +46,11 @@ $build-secondary: #FDEFEC;
 			margin: 1%;
 			box-shadow: inset 2px -7px 11px rgba(80, 92, 51, 0.71);
 		}
+	}
+
+	.itemsRow {
+		height: 20%;
+
 	}
 }
 

@@ -18,20 +18,20 @@
 			<ion-col width-33>
 				<ion-item>
 			    	<ion-label stacked>Quantity</ion-label>
-			    	<ion-input type="text"></ion-input>
+			    	<ion-input type="text" [(ngModel)]="selectedQuantity"></ion-input>
 				  </ion-item>
 			</ion-col>
 			<ion-col>
 				<ion-item>
 					<ion-label stacked>Type</ion-label>
-					<ion-select [(ngModel)]="selectedShirtType">
-						<ion-option *ngFor="let item of shirtTypes" value="{{item.id}}">{{item.type}}</ion-option>
+					<ion-select [(ngModel)]="selectedShirtTypeObject" (ionChange)="selectShirtType(selectedShirtTypeObject)">
+						<ion-option *ngFor="let item of shirtTypes" [value]="item">{{item.type}}</ion-option>
 					</ion-select>
 				</ion-item>
 			</ion-col>
 		</ion-row>
 		<ion-row class="colorRow">
-			<ion-slides loop>
+			<ion-slides [options]="mySlideOptions">
 				<ion-slide class="colors" 
 					*ngFor="let color of colors" 
 					[ngStyle]="{'background-color': color.hex}" 
@@ -39,11 +39,17 @@
 				</ion-slide>
 			</ion-slides>
 		</ion-row>
+		<ion-row [innerHtml]="addedItem | safeHtml" class="itemsRow">
+		</ion-row>
 	</ion-card>
 	<div class="nextButtonDiv">
+		<button ion-button round outline icon-right class="nextButton" (click)="addItems(selectedQuantity, selectedColor, selectedShirtTypeImage)">
+			Add
+			<ion-icon name="add-circle"></ion-icon>
+		</button>
 		<button ion-button round outline icon-right class="nextButton" (click)="pantsQuestion()">
 			Next
-			<ion-icon name="ion-arrow-forward"></ion-icon>
+			<ion-icon name="ios-arrow-forward"></ion-icon>
 		</button>
 	</div>
 </ion-content>

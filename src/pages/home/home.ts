@@ -21,6 +21,6 @@ export class HomePage {
   	setTimeout(() => {
   		loader.dismiss();
   		this.navCtrl.setRoot(BuildCloset);
-  	}, 5000);
+  	}, 500);
   }
 }

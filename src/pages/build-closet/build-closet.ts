@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Slides } from 'ionic-angular';
+
 
 /*
   Generated class for the BuildCloset page.
@@ -7,29 +8,33 @@ import { NavController } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+
 @Component({
   selector: 'page-build-closet',
   templateUrl: 'build-closet.html'
 })
 export class BuildCloset {
 
-	selectedShirtType: number;
-	selectedShirtTypeImage: string;
+	selectedShirtTypeImage: string = "../assets/img/default.jpg";
 	shirtTypes: any[];
 	colors: any[];
 	selectedColor: string;
+	selectedShirtTypeObject: any;
+	addedItem: string = '';
 
+	mySlideOptions = {
+	    loop: true
+  	};
 
 	constructor(public navCtrl: NavController) {
-		this.selectedShirtTypeImage = "../assets/img/t-shirt.png";
-		this.selectedShirtType = 0;
-		this.shirtTypes = [{id: 1, type: 'T-Shirt'},
-			{id: 2, type: 'Classic'},
-			{id: 3, type: 'Polo'},
-			{id: 4, type: 'Henley'},
-			{id: 5, type: 'Turtleneck'},
-			{id: 6, type: 'Sweathshirt'},
-			{id: 7, type: 'Sweater'}];
+		this.shirtTypes = [{id: 1, type: 'T-Shirt', image: "../assets/img/t-shirt.png"},
+			{id: 2, type: 'Classic', image: "../assets/img/classicShirt.png"},
+			{id: 3, type: 'Polo', image: "../assets/img/polo.png"},
+			{id: 4, type: 'Henley', image: "../assets/img/t-shirt.png"},
+			{id: 5, type: 'Turtleneck', image: "../assets/img/turtleneck.png"},
+			{id: 6, type: 'Sweathshirt', image: "../assets/img/sweatshirt.png"},
+			{id: 7, type: 'Sweater', image: "../assets/img/sweater.png"}];
 
 		this.colors = [{id: 1, hex: "#FFFFFF", name: 'White'},
 			{id: 2, hex: "#F5F5DC", name: 'Beige'},
@@ -50,6 +55,18 @@ export class BuildCloset {
 
  	selectColor(color) {
  		this.selectedColor = color.hex;
+ 	}
+
+ 	selectShirtType(shirtType){
+ 		this.selectedShirtTypeImage = shirtType.image;
+ 	}
+
+ 	addItems(quantity, color, type){
+ 		this.addedItem = this.addedItem + 
+ 			'<div>' +
+ 			'<img class="image" src="' + type + '" style="background-color: ' + color + '" />' +
+ 			'<text>' + quantity + '</text>' +  
+ 			'</div>';
  	}
 
   ionViewDidLoad() {
